@@ -1,0 +1,13 @@
+- content_for :head do
+  %link{rel: 'stylesheet', type: 'text/css', href: 'stylesheets/vocabulist.css' }
+  %script{ type: 'text/javascript', src: 'javascripts/vocabulist.js' }
+%input#search{type: 'textfield'}
+
+%ul.authors
+  - works.each do |author, writings|
+    %li.author{name: author.downcase }
+      = author
+      %ul.writings
+        - writings.each do |writing|
+          %li.writing{name: writing.first.downcase }= writing.join(" : ")
+
