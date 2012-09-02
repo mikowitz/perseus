@@ -9,4 +9,4 @@ because I think the ability to filter the list of works in a useful way is
 lacking and necessary. 
 
 [perseus]: http://www.perseus.tufts.edu/ "Perseus Digital Library"
-[vocablist]: http://www.perseus.tufts.edu/ "vocablist"
+[vocablist]: http://www.perseus.tufts.edu/hopper/vocablist "vocablist"
