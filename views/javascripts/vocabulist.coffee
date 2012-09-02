@@ -6,7 +6,7 @@ $(document).ready ->
       alert "nope"
 
   $(document).on 'keyup', '#author-search', (e) ->
-    query = $(this).val().toLowerCase()
+    query = $(@).val().toLowerCase()
     if query == ""
       $('li.author').removeClass('no-match match')
     else
@@ -14,7 +14,7 @@ $(document).ready ->
       $('li.author:not([name*="' + query + '"])').addClass('no-match').removeClass('match')
 
   $(document).on 'keyup', '#title-search', (e) ->
-    query = $(this).val().toLowerCase()
+    query = $(@).val().toLowerCase()
     if query == ""
       $('li.writing').removeClass('no-match match')
     else
