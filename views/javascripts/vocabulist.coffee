@@ -1,9 +1,17 @@
 $(document).ready ->
   $(document).on 'change', '#show-checked', (e) ->
     if @.checked
-      alert "checked"
+      $('li.author').addClass('no-match')
+      $('li.work').addClass('no-match')
+      $('input[type=checkbox]:checked').each (i, checkbox) ->
+        $(checkbox).parent('li.work').addClass('match').removeClass('no-match')
+      $('ul.works').each (i, ul) ->
+        if $(ul).children('li.match').length > 0
+          $(ul).parent('li.author').addClass('match').removeClass('no-match')
+
     else
-      alert "nope"
+      $('li.author').removeClass('no-match match')
+      $('li.work').removeClass('no-match match')
 
   $(document).on 'keyup', '#author-search', (e) ->
     query = $(@).val().toLowerCase()
