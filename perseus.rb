@@ -27,18 +27,20 @@ get '/javascripts/*.js' do
   coffee filename.to_sym
 end
 
+class Author < ActiveRecord::Base
+  validates_presence_of :name
+  validates_uniqueness_of :name
 
+  has_many :works
 
-def latin_works
-  doc = Nokogiri::HTML(File.read('body.txt'))
-  sels = doc.css('select[name=works] option')
-  ret = {}
-  sels.each do |sel|
-    val = sel.values.first
-    author, name = sel.content.match(/^([^,]+),(.*)$/)[1..-1]
-    ret[author] ||= []
-    ret[author] << [name.strip, val]
-  end
+  scope :by_language, lambda { |lang| where(language: lang) }
+end
 
-  ret
+class Work < ActiveRecord::Base
+  validates_uniqueness_of :perseus_code
+
+  belongs_to :author
+
+  scope :by_name, order('title ASC')
+end
 end
