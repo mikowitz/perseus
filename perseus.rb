@@ -12,8 +12,11 @@ get '/' do
   redirect to '/vocabulist'
 end
 
-get '/vocabulist' do
-  haml :vocabulist, locals: { works: latin_works }
+get '/vocabulist/?:lang?' do
+  lang = params[:lang] || 'latin'
+  @lang_param = lang == 'latin' ? 'la' : 'greek'
+  @authors = Author.by_language(lang).order('name ASC')
+  haml :vocabulist
 end
 
 get '/stylesheets/*.css' do
@@ -42,4 +45,13 @@ class Work < ActiveRecord::Base
 
   scope :by_name, order('title ASC')
 end
+
+class String
+  def truncate(len=50)
+    if self.length < len
+      self
+    else
+      self[0..(len-3)] + "..."
+    end
+  end
 end

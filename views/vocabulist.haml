@@ -1,17 +1,20 @@
 - content_for :head do
-  %link{rel: 'stylesheet', type: 'text/css', href: 'stylesheets/vocabulist.css' }
-  %script{ type: 'text/javascript', src: 'javascripts/vocabulist.js' }
+  %link{rel: 'stylesheet', type: 'text/css', href: '/stylesheets/vocabulist.css' }
+  %script{ type: 'text/javascript', src: '/javascripts/vocabulist.js' }
 
 %input#author-search{type: 'textfield'}
 %input#title-search{type: 'textfield'}
 %input#show-checked{type: 'checkbox'}
+%input#language{type: 'hidden', value: @lang_param}
+%form#search
+  %input{type: 'submit', value: 'Search!'}
 
 %ul.authors{ style: 'width:50%;' }
-  - works.each do |author, writings|
-    %li.author{name: author.downcase}
-      = author
-      %ul.writings
-        - writings.each do |writing|
-          %li.writing{name: writing.first.downcase }
-            %input{type: 'checkbox', value: writing.last }
-            = writing.first
+  - @authors.each do |author|
+    %li.author{name: author.name.downcase}
+      = author.name
+      %ul.works
+        - author.works.by_name.each do |work|
+          %li.work{name: work.title.downcase, title: work.title}
+            %input.work-input{type: 'checkbox', value: work.perseus_code}
+            = work.title.truncate
