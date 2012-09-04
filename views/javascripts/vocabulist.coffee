@@ -16,11 +16,12 @@ $(document).ready ->
   $(document).on 'keyup', '#title-search', (e) ->
     query = $(@).val().toLowerCase()
     if query == ""
-      $('li.writing').removeClass('no-match match')
+      $('li.author').removeClass('no-match match')
+      $('li.work').removeClass('no-match match')
     else
-      $('li.writing[name*="' + query + '"]').addClass('match').removeClass('no-match')
-      $('li.writing:not([name*="' + query + '"])').addClass('no-match').removeClass('match')
-      $('ul.writings').each (i, ul) ->
+      $('li.work[name*="' + query + '"]').addClass('match').removeClass('no-match')
+      $('li.work:not([name*="' + query + '"])').addClass('no-match').removeClass('match')
+      $('ul.works').each (i, ul) ->
         if $(ul).children('li.match').length == 0
           $(ul).parent('li.author').addClass('no-match').removeClass('match')
         else
