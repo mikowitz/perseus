@@ -12,4 +12,5 @@ gem 'sass'
 gem 'coffee-script'
 
 gem 'thin'
+gem 'curb'
 gem 'nokogiri'

@@ -1,6 +1,5 @@
 require 'sinatra'
 require 'sinatra/content_for'
-require 'nokogiri'
 require 'haml'
 require 'sass'
 require 'coffee-script'
