@@ -2,11 +2,14 @@ source 'https://rubygems.org'
 
 gem 'sinatra'
 gem 'sinatra-contrib'
+gem 'sinatra-activerecord'
+gem 'sqlite3'
+
 gem 'shotgun'
 
 gem 'haml'
-gem 'thin'
 gem 'sass'
 gem 'coffee-script'
 
+gem 'thin'
 gem 'nokogiri'

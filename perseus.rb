@@ -5,6 +5,10 @@ require 'haml'
 require 'sass'
 require 'coffee-script'
 
+require 'sinatra/activerecord'
+
+set :database, 'sqlite:///perseus.db'
+
 get '/' do
   redirect to '/vocabulist'
 end
